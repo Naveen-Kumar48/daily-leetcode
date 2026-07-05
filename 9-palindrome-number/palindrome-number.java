@@ -1,19 +1,28 @@
 class Solution {
+
+    private static boolean checkPalindrome(String num) {
+        int left = 0;
+        int right = num.length() - 1;
+
+        while (left < right) {
+            if (num.charAt(left) != num.charAt(right)) {
+                return false;
+            }
+
+            left++;
+            right--;
+        }
+
+        return true;
+    }
+
     public boolean isPalindrome(int x) {
-        if (x < 0 || (x % 10 == 0 && x != 0)) {
+        if (x < 0) {
             return false;
         }
 
-        int reversedHalf = 0;
+        String num = x + "";
 
-        // Reverse only half of the number
-        while (x > reversedHalf) {
-            reversedHalf = reversedHalf * 10 + x % 10;
-            x /= 10;
-        }
-
-        // ✅ For even length: x == reversedHalf
-        // ✅ For odd length: x == reversedHalf / 10
-        return x == reversedHalf || x == reversedHalf / 10;
+        return checkPalindrome(num);
     }
 }
